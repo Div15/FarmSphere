@@ -33,6 +33,13 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Demonstration listings only. Replace with verified seller data before public launch.
+# Reset demo data once when the listing structure changes between app versions.
+# Streamlit can retain session_state across code updates in an existing browser session.
+if st.session_state.get("farmsphere_data_version") != 2:
+    for key in ("listings", "orders", "seller_interest"):
+        st.session_state.pop(key, None)
+    st.session_state["farmsphere_data_version"] = 2
+
 if "listings" not in st.session_state:
     st.session_state.listings = [
         {
@@ -172,7 +179,7 @@ elif page == "Explore Produce":
         with st.container(border=True):
             detail, purchase = st.columns([3, 1])
             with detail:
-                st.subheader(f'{item["emoji"]} {item["crop"]}')
+                st.subheader("{} {}".format(item.get("emoji", "🌱"), item.get("crop", "Produce")))
                 st.caption(f'{item["seller_type"]} · {item["location"]}')
                 st.write(f'**Grown by:** {item["seller"]}')
                 st.write(f'**Growing method:** {item["method"]}')
@@ -274,3 +281,4 @@ elif page == "Become a Seller":
 
 st.sidebar.markdown("---")
 st.sidebar.caption("FarmSphere prototype · No independent crop verification or live delivery tracking")
+        
