@@ -103,13 +103,13 @@ page = st.sidebar.radio("Navigate", [
     "🏠 Home", "🛒 Explore Produce", f"🧺 Cart ({len(S.cart)})", "📍 Track My Crop",
     "📦 My Orders", "🏡 Become a Seller", "👨‍🌾 Seller Dashboard", "🚚 How We Keep Logistics Lean"])
 st.sidebar.markdown("---")
-st.sidebar.info("Chemical-free food you can verify. Know the grower, see the grow log, "
+st.sidebar.info("Chemical-free food you can verify. Know the farmer, see the grow log, "
                 "and get it from a hub near you.")
 
 # ---------------------------------------------------------------- HOME
 if page == "🏠 Home":
     st.markdown("""<div class="hero"><h1>🌱 FarmSphere</h1>
-    <p>Know your grower. Trust your food.</p>
+    <p>Know your farmer. Trust your food.</p>
     <p>Pesticide-free produce from farms and neighbourhood terrace gardens, with a full "Food Passport" for every crop.</p></div>""",
                 unsafe_allow_html=True)
     ls = S.listings
